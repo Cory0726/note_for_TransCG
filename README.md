@@ -1,6 +1,12 @@
 # note_for_TransCG
 My notes for TransCG.
 
+- [Refernece](#reference)
+- [Introduction](#introduction)
+  - [TransCG Dataset](#transcg-dataset)
+- [System setup](#system-setup)
+- [Script](#script)
+
 # Reference
 - Paper : [TransCG: A Large-Scale Real-World Dataset for Transparent Object Depth Completion and a Grasping Baseline](https://ieeexplore.ieee.org/document/9796631)
 - Web :
@@ -23,3 +29,8 @@ Include the **dataset** and the proposed **Depth Filler Net (DFNet)** models.
 pip install -r requirements.txt
 pip3 install torch torchvision --index-url https://download.pytorch.org/whl/cu130
 ```
+ ## Script
+### depth_inference.py
+- Function library : `./inference.py`, `./utils/`
+- Configuration : `./configs/inference.yaml`
+- Pre-trained weight : `./checkpoints/checkpoint.tar`

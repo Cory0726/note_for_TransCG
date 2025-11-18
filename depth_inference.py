@@ -6,26 +6,20 @@ def run_transcg_inference(rgb_path, depth_path, config_path):
     """
     Run TransCG DFNet inference and return refined depth.
 
-    Args:
-        rgb_path (str): Path to RGB image (png/jpg).
-        depth_path (str): Path to depth image (png or .npy).
-        config_path (str): Path to TransCG config file (configs/inference.yaml).
+    :param rgb_path: (str), Path to RGB image (png / jpg).
+    :param depth_path: (str), Path to depth image (png / jpg).
+    :param config_path: (str), Path to config file (yaml).
 
-    Returns:
-        refined_depth (numpy array, H×W, float32)
+    :return: refined_depth (numpy array, H×W, float32)
     """
 
-    # -------------------------------
-    # 1. Load RGB
-    # -------------------------------
+    # Load RGB image
     rgb_bgr = cv2.imread(rgb_path)
     if rgb_bgr is None:
         raise ValueError(f"Failed to read RGB image: {rgb_path}")
     rgb = cv2.cvtColor(rgb_bgr, cv2.COLOR_BGR2RGB)
 
-    # -------------------------------
-    # 2. Load depth
-    # -------------------------------
+    # Load depth
     if depth_path.endswith(".npy"):
         depth = np.load(depth_path).astype(np.float32)
     else:
@@ -39,14 +33,14 @@ def run_transcg_inference(rgb_path, depth_path, config_path):
         else:
             depth = depth_raw.astype(np.float32)
 
-    # -------------------------------
-    # 3. Init Inferencer
-    # -------------------------------
+    # Initialize the inferencer.
     inferencer = Inferencer(cfg_file=config_path)
-
-    # -------------------------------
-    # 4. Run inference
-    # -------------------------------
+    # Call inferencer for refined depth
     refined_depth = inferencer.inference(rgb, depth)
 
     return refined_depth.squeeze()  # H × W
+
+if __name__ == "__main__":
+    run_transcg_inference(
+        config_path="./configs/inference.yaml"
+    )
