@@ -29,7 +29,18 @@ Include the **dataset** and the proposed **Depth Filler Net (DFNet)** models.
 pip install -r requirements.txt
 pip3 install torch torchvision --index-url https://download.pytorch.org/whl/cu130
 ```
- ## Script
+
+## Issue
+### In PyTorch 2.6, we changed the default value of the `weights_only` argument in `torch.load` from `False` to `True`
+- 改`inferencer.py`裡的`torch.load`那一行
+```python
+# Origin :
+checkpoint = torch.load(checkpoint_file, map_location=self.device)
+# Change to :
+checkpoint = torch.load(checkpoint_file, map_location=self.deivce, weights_only=False)
+```
+
+## Script
 ### depth_inference.py
 - Function library : `./inference.py`, `./utils/`
 - Configuration : `./configs/inference.yaml`

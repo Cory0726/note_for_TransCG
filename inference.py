@@ -57,7 +57,7 @@ class Inferencer(object):
         
         checkpoint_file = self.builder.get_inference_checkpoint_path()
         if os.path.isfile(checkpoint_file):
-            checkpoint = torch.load(checkpoint_file, map_location = self.device)
+            checkpoint = torch.load(checkpoint_file, map_location = self.device, weights_only=False)
             self.model.load_state_dict(checkpoint['model_state_dict'])
             start_epoch = checkpoint['epoch']
             if self.with_info:
