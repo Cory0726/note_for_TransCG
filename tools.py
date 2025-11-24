@@ -125,14 +125,19 @@ def visualize_rgb_depth_alignment(color_img, depth, alpha_rgb: float = 0.6, alph
     return overlay_heatmap, overlay_edges
 
 if __name__ == "__main__":
-    img = cv2.imread("D:/temp2/G_01_rgb.png")  # 讀入原始 RGB 圖
+    # img = cv2.imread("test_img/G_04_rgb.png")  # 讀入原始 RGB 圖
+    #
+    # scale = 0.63  # 63%
+    #
+    # # fx = zoom in/out horizontally
+    # # fy = zoom in/out vertically
+    # img_resized = cv2.resize(img, None, fx=scale, fy=scale)
+    # cv2.imwrite("test_img/G_04_rgb_Scale063.png", img_resized)
 
-    scale = 0.63  # 63%
+    img = cv2.imread('test_img/G_04_rgb_Scale063.png')
+    img_aligment = crop_by_4_points(
+        img,
+        [(14, 105), (652, 105), (14, 585), (652, 585)]
+    )
 
-    # fx = zoom in/out horizontally
-    # fy = zoom in/out vertically
-    img_resized = cv2.resize(img, None, fx=scale, fy=scale)
-
-    cv2.imwrite("D:/temp2/G_01_rgb_resized.png", img_resized)
-
-    img_mouse_click_xy(img_path="D:/temp2/G_01_rgb_resized.png")
+    cv2.imwrite('test_img/G_04_rgb_aligment.png', img_aligment)
