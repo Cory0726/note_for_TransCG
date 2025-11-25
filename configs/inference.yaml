@@ -11,5 +11,5 @@
   "image_size": !!python/tuple [640, 480]
   "cuda_id": 0
   "depth_min": 0.0
-  "depth_max": 1.5
+  "depth_max": 2.0
   "depth_norm": 1.0

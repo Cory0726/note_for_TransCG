@@ -47,7 +47,7 @@ def main():
     # # Call inferencer for refined depth
     depth_refine, depth_ori = inferencer.inference(
         rgb=norm_fake_rgb,
-        depth=raw_depth_m,
+        depth=mask_raw_depth_m,
         target_size=(640, 480),
         depth_coefficient=5.0,
         inpainting=True,
@@ -55,7 +55,7 @@ def main():
     print('depth_refine : ' + array_info(depth_refine))
     depth_refine_heatmap = rawdepth_to_heatmap(depth_refine)
     print('depth_refine_heatmap : ' + array_info(depth_refine_heatmap))
-    cv2.imwrite('result_img/M1_01d05_depth_refine_heatmap.png', depth_refine_heatmap)
+    # cv2.imwrite('result_img/M1_01d05_depth_refine_heatmap.png', depth_refine_heatmap)
     cv2.imshow('depth_refine_heatmap', depth_refine_heatmap)
     cv2.waitKey(0)
 if __name__ == "__main__":
